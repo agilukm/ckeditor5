@@ -25,6 +25,7 @@ import AttributeElement from '../view/attributeelement';
 import ContainerElement from '../view/containerelement';
 import EmptyElement from '../view/emptyelement';
 import UIElement from '../view/uielement';
+import RawElement from '../view/rawelement';
 import { StylesProcessor } from '../view/stylesmap';
 
 const ELEMENT_RANGE_START_TOKEN = '[';
@@ -35,7 +36,8 @@ const allowedTypes = {
 	'container': ContainerElement,
 	'attribute': AttributeElement,
 	'empty': EmptyElement,
-	'ui': UIElement
+	'ui': UIElement,
+	'raw': RawElement
 };
 
 /**
@@ -943,10 +945,10 @@ function _convertViewElements( rootNode ) {
 		for ( const child of [ ...rootNode.getChildren() ] ) {
 			if ( convertedElement.is( 'emptyElement' ) ) {
 				throw new Error( 'Parse error - cannot parse inside EmptyElement.' );
-			}
-
-			if ( convertedElement.is( 'uiElement' ) ) {
+			} else if ( convertedElement.is( 'uiElement' ) ) {
 				throw new Error( 'Parse error - cannot parse inside UIElement.' );
+			} else if ( convertedElement.is( 'rawElement' ) ) {
+				throw new Error( 'Parse error - cannot parse inside RawElement.' );
 			}
 
 			convertedElement._appendChild( _convertViewElements( child ) );

@@ -16,6 +16,7 @@ ClassicEditor
 		toolbar: [
 			'heading', '|', 'mediaEmbed', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'link', 'undo', 'redo'
 		],
+		placeholder: 'go on buddy',
 		mediaEmbed: {
 			previewsInData: true,
 			toolbar: [ 'blockQuote' ]

@@ -220,7 +220,7 @@ export default class DomConverter {
 					this.bindDocumentFragments( domElement, viewNode );
 				}
 			} else if ( viewNode.is( 'uiElement' ) ) {
-				// UIElement has its own render() method (see #799).
+				// UIElement and RawElement have their own render() methods (see #799).
 				domElement = viewNode.render( domDocument );
 
 				if ( options.bind ) {
@@ -244,6 +244,9 @@ export default class DomConverter {
 				for ( const key of viewNode.getAttributeKeys() ) {
 					domElement.setAttribute( key, viewNode.getAttribute( key ) );
 				}
+
+				// TODO
+				// Take the domElement and to RawElement specific rendering at this stage.
 			}
 
 			if ( options.withChildren || options.withChildren === undefined ) {
@@ -550,10 +553,10 @@ export default class DomConverter {
 			return this.domPositionToView( domParent.parentNode, indexOf( domParent ) );
 		}
 
-		// If position is somewhere inside UIElement - return position before that element.
+		// If position is somewhere inside UIElement or a RawElement - return position before that element.
 		const viewElement = this.mapDomToView( domParent );
 
-		if ( viewElement && viewElement.is( 'uiElement' ) ) {
+		if ( viewElement && ( viewElement.is( 'uiElement' ) || viewElement.is( 'rawElement' ) ) ) {
 			return ViewPosition._createBefore( viewElement );
 		}
 
@@ -641,6 +644,7 @@ export default class DomConverter {
 		}
 
 		// If DOM text was rendered by UIElement - return that element.
+		// TODO rename getParentUIElement to sth else and support the RawElement too.
 		const uiElement = this.getParentUIElement( domText );
 
 		if ( uiElement ) {
@@ -864,6 +868,7 @@ export default class DomConverter {
 	 * @param {Node} domNode
 	 * @returns {module:engine/view/uielement~UIElement|null}
 	 */
+	// TODO rename getParentUIElement to sth else and support the RawElement too.
 	getParentUIElement( domNode ) {
 		const ancestors = getAncestors( domNode );
 
