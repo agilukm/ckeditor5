@@ -13,6 +13,7 @@ import DomConverter from '@ckeditor/ckeditor5-engine/src/view/domconverter';
 import ViewDocument from '@ckeditor/ckeditor5-engine/src/view/document';
 
 import { normalizeSpacing, normalizeSpacerunSpans } from './space';
+import { normalizeEquations } from './mathtex';
 
 /**
  * Parses provided HTML extracting contents of `<body>` and `<style>` tags.
@@ -42,6 +43,8 @@ export function parseHtml( htmlString, stylesProcessor ) {
 
 	// Get `innerHTML` first as transforming to View modifies the source document.
 	const bodyString = htmlDocument.body.innerHTML;
+
+	normalizeEquations( htmlDocument );
 
 	// Transform document.body to View.
 	const bodyView = documentToView( htmlDocument, stylesProcessor );

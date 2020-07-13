@@ -87,5 +87,13 @@ module.exports = {
 				]
 			}
 		]
+	},
+
+	resolve: {
+		symlinks: false
+	},
+
+	devServer: {
+		contentBase: path.join(__dirname, 'sample')
 	}
 };
