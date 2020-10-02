@@ -70,6 +70,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
+    "start:dev": "webpack-dev-server",
     "preversion": "npm run build"
   }
 }

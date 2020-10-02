@@ -43,12 +43,12 @@
 <script>
 function getEditorData() {
 	const data = window.editor.getData();
-	
+
 	// HTML
 	const preview = document.getElementById('editor-preview');
 	preview.innerHTML = data;
 	renderMathInElement(preview); // KaTex
-	
+
 	// Text
 	document.getElementById('editor-preview-html').innerText = data;
 }
