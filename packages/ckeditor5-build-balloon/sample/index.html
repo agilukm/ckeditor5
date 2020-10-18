@@ -9,28 +9,56 @@
 			margin: 20px auto;
 		}
 	</style>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 </head>
 <body>
 
 <h1>CKEditor 5 – balloon editor build – development sample</h1>
 
+<h2>Example TeX equations</h2>
+<b>Math</b>
+<pre>x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}</pre>
+<b>Chem</b>
+<pre>\ce{CH4 + 2 O2 -> CO2 + 2 H2O}</pre>
+
+<h2>Preview editor</h2>
 <div id="editor">
-	<h2>Sample</h2>
-
-	<p>This is an instance of the <a href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html#balloon-editor">balloon editor build</a>.</p>
-
-	<figure class="image">
-		<img src="../tests/manual/sample.jpg" alt="Autumn fields" />
-	</figure>
-
-	<p>You can use this sample to validate whether your <a href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/development/custom-builds.html">custom build</a> works fine.</p>
+	<p>Lorem... <span class="math-tex"> \(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a} \) </span> ...ipsum</p>
+	<p>Lorem... <span class="math-tex"> \[ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a} \] </span> ...ipsum</p>
+	<p>Lorem... <script type="math/tex">x+\sqrt{1-x^2}</script> ...ipsum</p>
+	<p>Lorem... <script type="math/tex; mode=display">x+\sqrt{1-x^2}</script> ...ipsum</p>
 </div>
 
-<script src="../build/ckeditor.js"></script>
+<h2>Preview editor data in HTML</h2>
+<div id="editor-preview"></div>
+
+<h2>Preview editor data in text</h2>
+<pre id="editor-preview-html" style="word-wrap: break-word; white-space: pre-wrap;"></pre>
+
+<script src="https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-inspector@2.2.0/build/inspector.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
+<script src="ckeditor.js"></script>
 <script>
+	function getEditorData() {
+		const data = window.editor.getData();
+
+		// HTML
+		const preview = document.getElementById('editor-preview');
+		preview.innerHTML = data;
+		renderMathInElement(preview); // KaTex
+
+		// Text
+		document.getElementById('editor-preview-html').innerText = data;
+	}
 	BalloonEditor.create( document.querySelector( '#editor' ) )
 		.then( editor => {
 			window.editor = editor;
+			CKEditorInspector.attach( editor );
+			getEditorData();
+			editor.model.document.on('change:data', () => {
+				getEditorData();
+			});
 		} )
 		.catch( error => {
 			console.error( 'There was a problem initializing the editor.', error );
