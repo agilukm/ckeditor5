@@ -81,6 +81,7 @@ ClassicEditor.defaultConfig = {
 			'insertTable',
 			'math',
 			'mediaEmbed',
+			'|',
 			'undo',
 			'redo'
 		]

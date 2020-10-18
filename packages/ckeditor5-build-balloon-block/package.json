@@ -45,9 +45,10 @@
     "@ckeditor/ckeditor5-paragraph": "^23.0.0",
     "@ckeditor/ckeditor5-paste-from-office": "^23.0.0",
     "@ckeditor/ckeditor5-table": "^23.0.0",
-    "@ckeditor/ckeditor5-typing": "^23.0.0",
     "@ckeditor/ckeditor5-theme-lark": "^23.0.0",
+    "@ckeditor/ckeditor5-typing": "^23.0.0",
     "@ckeditor/ckeditor5-ui": "^23.0.0",
+    "ckeditor5-math": "^23.2.0",
     "postcss-loader": "^3.0.0",
     "raw-loader": "^4.0.1",
     "style-loader": "^1.2.1",
@@ -70,6 +71,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
+    "start:dev": "webpack-dev-server",
     "preversion": "npm run build"
   }
 }

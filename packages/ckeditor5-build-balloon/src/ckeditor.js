@@ -81,6 +81,7 @@ BalloonEditor.defaultConfig = {
 			'insertTable',
 			'math',
 			'mediaEmbed',
+			'|',
 			'undo',
 			'redo'
 		]
