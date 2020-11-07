@@ -52,7 +52,9 @@
 		// Text
 		document.getElementById('editor-preview-html').innerText = data;
 	}
-	BalloonEditor.create( document.querySelector( '#editor' ) )
+	BalloonEditor.create( document.querySelector( '#editor' ), {
+		placeholder: 'Type the content here!'
+	} )
 		.then( editor => {
 			window.editor = editor;
 			CKEditorInspector.attach( editor );
