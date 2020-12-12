@@ -53,7 +53,12 @@ function getEditorData() {
 	document.getElementById('editor-preview-html').innerText = data;
 }
 
-ClassicEditor.create( document.querySelector( '#editor' ) )
+ClassicEditor.create( document.querySelector( '#editor' ), {
+		placeholder: 'Type the content here!',
+		math: {
+			outputType: 'span'
+		}
+	} )
 	.then( editor => {
 		window.editor = editor;
 		CKEditorInspector.attach( editor );

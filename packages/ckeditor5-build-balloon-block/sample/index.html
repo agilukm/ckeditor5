@@ -43,6 +43,7 @@
 <script>
 	function getEditorData() {
 		const data = window.editor.getData();
+		console.log(data);
 
 		// HTML
 		const preview = document.getElementById('editor-preview');
@@ -53,7 +54,10 @@
 		document.getElementById('editor-preview-html').innerText = data;
 	}
 	BalloonEditor.create( document.querySelector( '#editor' ), {
-		placeholder: 'Type the content here!'
+		placeholder: 'Type the content here!',
+		math: {
+			outputType: 'span'
+		}
 	} )
 		.then( editor => {
 			window.editor = editor;
