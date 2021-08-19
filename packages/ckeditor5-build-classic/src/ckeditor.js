@@ -31,9 +31,6 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
-import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
-import Font from '@ckeditor/ckeditor5-font/src/font';
-import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -63,10 +60,7 @@ ClassicEditor.builtinPlugins = [
 	Table,
 	TableToolbar,
 	TextTransformation,
-	HtmlEmbed,
-	Alignment,
-	Font,
-	CodeBlock
+	HtmlEmbed
 ];
 
 // Editor configuration.
@@ -75,8 +69,6 @@ ClassicEditor.defaultConfig = {
 		items: [
 			'heading',
 			'|',
-			'alignment',
-			'font',
 			'bold',
 			'italic',
 			'link',
@@ -91,7 +83,6 @@ ClassicEditor.defaultConfig = {
 			'insertTable',
 			'math',
 			'htmlEmbed',
-			'codeBlock',
 			'mediaEmbed',
 			'|',
 			'undo',
