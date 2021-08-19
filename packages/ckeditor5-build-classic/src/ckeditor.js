@@ -20,6 +20,7 @@ import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
@@ -30,6 +31,11 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
+import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import MathType from '@wiris/mathtype-ckeditor5/src/plugin';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -49,6 +55,7 @@ ClassicEditor.builtinPlugins = [
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
+	ImageResize,
 	Indent,
 	Link,
 	List,
@@ -58,7 +65,12 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+	HtmlEmbed,
+	Alignment,
+	CodeBlock,
+	Font,
+	MathType
 ];
 
 // Editor configuration.
@@ -67,19 +79,27 @@ ClassicEditor.defaultConfig = {
 		items: [
 			'heading',
 			'|',
+			'alignment',
+			'fontFamily',
+			'fontSize',
+			'fontColor',
+			'fontBackgroundColor',
+			'|',
 			'bold',
 			'italic',
 			'link',
 			'bulletedList',
 			'numberedList',
+			'blockQuote',
 			'|',
 			'indent',
 			'outdent',
 			'|',
 			'imageUpload',
-			'blockQuote',
 			'insertTable',
 			'math',
+			'HtmlEmbed',
+			'codeBlock',
 			'mediaEmbed',
 			'|',
 			'undo',
